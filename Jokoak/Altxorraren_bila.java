@@ -70,17 +70,17 @@ public class Altxorraren_bila {
                 switch (zailtasuna) {
                     case 1:
                         mapa = new String[4][4];
-                        aukeraMax = 10;
+                        aukeraMax = 8;
                         break;
 
                     case 2:
                         mapa = new String[5][5];
-                        aukeraMax = 14;
+                        aukeraMax = 10;
                         break;
 
                     case 3:
                         mapa = new String[6][6];
-                        aukeraMax = 16;
+                        aukeraMax = 12;
                         break;
 
                     default:
