@@ -74,7 +74,7 @@ public class Pertsona
         Abizena=a;
     }
     
-    public void setHasieraData(String sarrera) 
+    public void setJaiotzeData(String sarrera) 
     {     
         LocalDate fecha=null;
         try 
@@ -86,7 +86,7 @@ public class Pertsona
             System.out.println("Data formatu desegokian dago.");
         }
     }
-    public void setHasieraData() 
+    public void setJaiotzeData() 
     {     
         LocalDate fecha=null;
         String sarrera;
