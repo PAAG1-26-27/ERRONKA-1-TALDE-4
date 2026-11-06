@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.erronka1;
+package com.mycompany.Erronka1;
 
+import java.util.Scanner;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
@@ -41,14 +43,9 @@ public class Pernoktazio extends Ekintza {
     }
 
     
-    public void setBukaeraData(String sarrera) {
-        LocalDate fecha = null;
-        try {
-            fecha = LocalDate.parse(sarrera, formato);
-            BukaeraData = fecha;
-        } catch (DateTimeParseException e) {
-            System.out.println("Data formatu desegokian dago.");
-        }
+    public void setBukaeraData(LocalDate sarrera) {
+        
+        BukaeraData = sarrera;
     }
 
     public void setBukaeraData() {

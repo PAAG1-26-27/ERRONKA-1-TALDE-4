@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.erronka1;
+package com.mycompany.Erronka1;
 
 
 import java.util.Scanner;
@@ -67,17 +67,9 @@ public class Ekintza {
         Izena=a;
     }
     
-    public void setHasieraData(String sarrera) 
+    public void setHasieraData(LocalDate sarrera) 
     {     
-        LocalDate fecha=null;
-        try 
-        {
-            fecha = LocalDate.parse(sarrera, formato);
-            HasieraData=fecha;
-        } catch (DateTimeParseException e) 
-        {
-            System.out.println("Data formatu desegokian dago.");
-        }
+        HasieraData=sarrera;
     }
     public void setHasieraData() 
     {     
