@@ -1,0 +1,549 @@
+<!-- Declara que el documento es HTML5; sin esto el navegador entra en "modo quirks" (comportamiento antiguo) -->
+<!DOCTYPE html>
+<!-- Etiqueta raíz. lang="eu" = idioma euskera (ayuda a lectores de pantalla y buscadores). class="scroll-smooth" (Tailwind) = los enlaces ancla (#id) se desplazan suavemente -->
+<html lang="eu" class="scroll-smooth">
+<!-- HEAD: información sobre la página que NO se ve directamente (metadatos, estilos, scripts) -->
+<head>
+	<!-- Codificación de caracteres UTF-8: permite tildes, ñ, ç y otros símbolos sin que salgan raros -->
+	<meta charset="UTF-8">
+	<!-- Hace la web responsive: el ancho de la página = ancho del dispositivo, con zoom inicial 1 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Título que aparece en la pestaña del navegador y en los resultados de Google -->
+	<title>Gazteleku Gazte Bide - Zure topagunea</title>
+	<!-- Comentario HTML original: indica que lo siguiente es Tailwind CSS -->
+	<!-- Tailwind CSS CDN -->
+	<!-- Carga Tailwind desde un CDN (servidor externo). Permite usar clases utilitarias como "flex" o "p-4" sin escribir CSS -->
+	<script src="https://cdn.tailwindcss.com"></script>
+	<!-- Comentario original: indica los iconos Lucide -->
+	<!-- Lucide Icons -->
+	<!-- Carga la librería de iconos Lucide (se usan con <i data-lucide="nombre">) -->
+	<script src="https://unpkg.com/lucide@latest"></script>
+	<!-- Abre un bloque de JavaScript para configurar Tailwind -->
+	<script>
+		// 'tailwind' es un objeto global creado por el script del CDN; su propiedad config guarda la configuración
+		tailwind.config = {
+			// 'theme' agrupa todo lo visual personalizable
+			theme: {
+				// 'extend' AÑADE cosas a lo que ya trae Tailwind (sin borrar los colores por defecto)
+				extend: {
+					// Define colores personalizados
+					colors: {
+						// Grupo de colores "brand": se usarán como bg-brand-orange, text-brand-teal, etc.
+						brand: {
+							// Naranja principal (código hexadecimal)
+							orange: '#FF6B35',
+							// Azul verdoso oscuro
+							teal: '#004E64',
+							// Cian verdoso
+							cyan: '#25A18E',
+							// Verde muy claro
+							light: '#9FFFCB',
+							// Verde azulado oscuro
+							dark: '#00A896'
+						}
+					},
+					// Define tipografías personalizadas
+					fontFamily: {
+						// 'sans' (la fuente por defecto) pasa a ser Inter; si falla, usa cualquier sans-serif
+						sans: ['Inter', 'sans-serif'],
+					}
+				}
+			}
+		}
+	// Cierra el bloque de configuración
+	</script>
+	<!-- Importa la fuente Inter de Google Fonts con los pesos 300, 400, 600, 700 y 800 -->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+	<!-- Abre un bloque de CSS propio -->
+	<style>
+		/* Aplica la fuente Inter a todo el body (refuerza la config de Tailwind) */
+		body { font-family: 'Inter', sans-serif; }
+	</style>
+<!-- Fin de la cabecera -->
+</head>
+<!-- BODY: todo lo visible. bg-slate-50 = fondo gris muy claro; text-slate-800 = texto gris oscuro; flex flex-col = apila hijos en columna; min-h-screen = alto mínimo = pantalla completa (así el footer queda abajo) -->
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+
+	<!-- Comentario original (euskera): NAVBAR = barra de navegación -->
+	<!-- NAZIGAZIOA / NAVBAR -->
+	<!-- <header> = cabecera semántica. sticky top-0 = se queda pegada arriba al hacer scroll; z-50 = capa superior a todo; bg-white/90 = blanco al 90% de opacidad; backdrop-blur-md = difumina lo que hay detrás; border-b = borde inferior; shadow-sm = sombra pequeña -->
+	<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
+		<!-- Contenedor centrado: max-w-7xl = ancho máximo; mx-auto = centrado horizontal; px-* = relleno lateral que crece con la pantalla (sm, lg = breakpoints) -->
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<!-- Fila flex: justify-between = extremos opuestos; items-center = centrado vertical; h-20 = alto 5rem -->
+			<div class="flex justify-between items-center h-20">
+				<!-- Comentario original: Logotipo -->
+				<!-- Logotipoa -->
+				<!-- Bloque del logo: flex con separación gap-3; cursor-pointer = manita al pasar; onclick = al hacer clic sube arriba suavemente (JS dentro del atributo) -->
+				<div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+					<!-- Cuadrado del icono: degradado naranja->ámbar hacia arriba-derecha (bg-gradient-to-tr), padding, esquinas muy redondeadas, texto blanco y sombra naranja translúcida -->
+					<div class="bg-gradient-to-tr from-brand-orange to-amber-400 p-2.5 rounded-2xl text-white shadow-md shadow-brand-orange/20">
+						<!-- Icono "sparkles" (destellos) de Lucide; w-7 h-7 = tamaño 1.75rem -->
+						<i data-lucide="sparkles" class="w-7 h-7"></i>
+					<!-- Cierra el cuadrado del icono -->
+					</div>
+					<!-- Contenedor de los dos textos del logo -->
+					<div>
+						<!-- Nombre: texto 2xl, extra negrita, letras algo juntas; bg-clip-text + text-transparent = el degradado se ve SOLO dentro de las letras -->
+						<span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-brand-teal via-brand-cyan to-brand-orange bg-clip-text text-transparent">
+							<!-- Texto del nombre de marca -->
+							Gazte Bide
+						<!-- Cierra el span del nombre -->
+						</span>
+						<!-- Subtítulo: block = en línea propia; texto muy pequeño, seminegrita, gris, letras espaciadas y en MAYÚSCULAS -->
+						<span class="block text-xs font-semibold text-slate-400 tracking-widest uppercase">Gazteleku Udala</span>
+					<!-- Cierra el contenedor de textos -->
+					</div>
+				<!-- Cierra el bloque del logo -->
+				</div>
+
+				<!-- Comentario original: Menú de escritorio -->
+				<!-- Desktop Menua -->
+				<!-- <nav> = navegación. hidden = oculta por defecto (móvil); md:flex = a partir de pantallas medianas se muestra como flex; gap-8 = separación; font-semibold = seminegrita; color gris -->
+				<nav class="hidden md:flex items-center gap-8 font-semibold text-slate-600">
+					<!-- Enlace ancla a la sección con id="hasiera". hover:text-brand-orange = naranja al pasar el ratón; transition-colors = cambio suave; py-2 = relleno vertical -->
+					<a href="#hasiera" class="hover:text-brand-orange transition-colors py-2">Hasiera</a>
+					<!-- Enlace a la sección de servicios -->
+					<a href="#zerbitzuak" class="hover:text-brand-orange transition-colors py-2">Zerbitzuak</a>
+					<!-- Enlace a la sección de actividades -->
+					<a href="#ekintzak" class="hover:text-brand-orange transition-colors py-2">Ekintzak</a>
+					<!-- Enlace a la sección de horarios -->
+					<a href="#ordutegia" class="hover:text-brand-orange transition-colors py-2">Ordutegia</a>
+					<!-- Enlace-botón a contacto: fondo naranja, texto blanco, redondeado completo (rounded-full), sombra; hover oscurece; hover:scale-105 agranda 5%; active:scale-95 encoge al pulsar -->
+					<a href="#kontaktua" class="bg-brand-orange hover:bg-orange-600 text-white px-5 py-2.5 rounded-full shadow-lg shadow-brand-orange/20 transition-all hover:scale-105 active:scale-95">
+						<!-- Texto del botón -->
+						Kontaktua
+					<!-- Cierra el enlace-botón -->
+					</a>
+				<!-- Cierra el menú de escritorio -->
+				</nav>
+
+				<!-- Comentario original: Botón del menú móvil -->
+				<!-- Mobil Menuko Botoia -->
+				<!-- Botón hamburguesa. id para localizarlo desde JS; md:hidden = se oculta en pantallas medianas+; hover con fondo gris; focus:outline-none quita el borde azul del navegador al enfocar -->
+				<button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 focus:outline-none">
+					<!-- Icono de menú (tres rayas) -->
+					<i data-lucide="menu" class="w-7 h-7"></i>
+				<!-- Cierra el botón -->
+				</button>
+			<!-- Cierra la fila flex -->
+			</div>
+		<!-- Cierra el contenedor centrado -->
+		</div>
+
+		<!-- Comentario original: Menú móvil (plegable/desplegable) -->
+		<!-- Mobil Menua (Eskutatu / Erakutsi) -->
+		<!-- Panel del menú móvil: empieza oculto (hidden); el JS le quita/pone "hidden"; md:hidden lo oculta siempre en escritorio; space-y-3 separa los hijos verticalmente -->
+		<div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-6 space-y-3">
+			<!-- Enlaces del menú móvil: block = ocupan toda la fila; con relleno y fondo gris claro al pasar el ratón. Este lleva a Hasiera -->
+			<a href="#hasiera" class="block text-slate-700 font-semibold py-2 px-3 rounded-lg hover:bg-slate-50">Hasiera</a>
+			<!-- Igual, hacia Zerbitzuak -->
+			<a href="#zerbitzuak" class="block text-slate-700 font-semibold py-2 px-3 rounded-lg hover:bg-slate-50">Zerbitzuak</a>
+			<!-- Igual, hacia Ekintzak -->
+			<a href="#ekintzak" class="block text-slate-700 font-semibold py-2 px-3 rounded-lg hover:bg-slate-50">Ekintzak</a>
+			<!-- Igual, hacia Ordutegia -->
+			<a href="#ordutegia" class="block text-slate-700 font-semibold py-2 px-3 rounded-lg hover:bg-slate-50">Ordutegia</a>
+			<!-- Botón naranja de contacto, centrado (text-center) -->
+			<a href="#kontaktua" class="block bg-brand-orange text-white font-semibold text-center py-2.5 rounded-xl shadow-md">Kontaktua / Izen-ematea</a>
+		<!-- Cierra el panel móvil -->
+		</div>
+	<!-- Cierra la cabecera -->
+	</header>
+
+	<!-- Comentario original: sección de inicio / hero -->
+	<!-- HASIERA / HERO SEKZIOA -->
+	<!-- <section> con id="hasiera" (destino del ancla). relative = referencia para posicionar hijos absolutos; overflow-hidden = recorta lo que sobresalga; pt/pb = relleno arriba/abajo (md: más grande); fondo en degradado vertical de teal claro a blanco a gris -->
+	<section id="hasiera" class="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-32 bg-gradient-to-b from-teal-50/50 via-white to-slate-50">
+		<!-- Comentario original: adornos de fondo -->
+		<!-- Atzeko planoko apaingarriak -->
+		<!-- Círculo difuminado cian: absolute = posición libre dentro del section; top-1/4 y -left-20 lo colocan; w-72 h-72 = tamaño; rounded-full = círculo; blur-3xl = muy borroso; pointer-events-none = no bloquea clics -->
+		<div class="absolute top-1/4 -left-20 w-72 h-72 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+		<!-- Círculo difuminado naranja abajo a la derecha -->
+		<div class="absolute bottom-10 right-0 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none"></div>
+
+		<!-- Contenedor centrado; relative z-10 = queda POR ENCIMA de los círculos decorativos -->
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+			<!-- Rejilla (grid): en móvil 1 columna, en lg (pantallas grandes) 2 columnas; gap-12 = separación; items-center = centrado vertical -->
+			<div class="grid lg:grid-cols-2 gap-12 items-center">
+				<!-- Columna izquierda (texto): alineado a la izquierda; space-y-6 = separación vertical entre hijos -->
+				<div class="text-left space-y-6">
+					<!-- Etiqueta redondeada: inline-flex (ancho justo al contenido), fondo naranja claro, texto naranja, negrita, pequeña -->
+					<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-brand-orange font-bold text-sm">
+						<!-- Icono de cara sonriente -->
+						<i data-lucide="smile" class="w-4 h-4"></i>
+						<!-- Texto: "Para jóvenes de 12 a 17 años" -->
+						<span>12-17 urte bitarteko gazteontzat!</span>
+					<!-- Cierra la etiqueta -->
+					</div>
+					<!-- Título principal H1 (solo debe haber uno por página, importante para SEO). Tamaño crece: 4xl -> 5xl (sm) -> 6xl (lg); font-black = peso máximo; leading-tight = interlineado ajustado -->
+					<h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight">
+						<!-- Texto normal + un span con la palabra resaltada con degradado dentro de las letras -->
+						Zatoz eta parte hartu <span class="bg-gradient-to-r from-brand-orange to-amber-500 bg-clip-text text-transparent">Gaztelekuan!</span>
+					<!-- Cierra el H1 -->
+					</h1>
+					<!-- Párrafo descriptivo: tamaño grande, gris, interlineado cómodo, ancho máximo para que no se estire demasiado -->
+					<p class="text-lg text-slate-600 leading-relaxed max-w-xl">
+						<!-- Texto: lugar para reunirse con amigos, jugar, aprender y pasarlo bien -->
+						Lagunekin elkartzeko, jolasteko, ikasteko eta ondo pasatzeko gunea. Joko kontsolak, tailerrak, irteerak eta askoz gehiago zai dituzu. Zatoz gu ezagutzera!
+					<!-- Cierra el párrafo -->
+					</p>
+					<!-- Contenedor de botones: flex-wrap = si no caben, saltan de línea; pt-4 = relleno superior -->
+					<div class="flex flex-wrap gap-4 pt-4">
+					<!-- Cierra el contenedor de botones -->
+					</div>
+				<!-- Cierra la columna izquierda -->
+				</div>
+
+				<!-- Comentario original: composición de imagen/tarjeta del hero -->
+				<!-- Hero Irudi / Txartel konposizioa -->
+				<!-- Columna derecha: relative (para posicionar texto encima de la foto); flex + justify-center centra la imagen -->
+				<div class="relative flex justify-center">
+					<!-- Marco de la imagen: ancho máx. lg, aspect-square = cuadrado perfecto, esquinas redondeadas, recorta overflow, sombra grande, borde blanco grueso -->
+					<div class="relative w-full max-w-lg aspect-square rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+						<!-- Imagen de Unsplash. alt = texto alternativo (accesibilidad). w-full h-full = rellena el marco; object-cover = recorta sin deformar -->
+						<img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" 
+							 alt="Gazteak Gaztelekuan pozik" 
+							 class="w-full h-full object-cover">
+						<!-- Capa oscura en degradado (de abajo negro 60% a transparente) para que el texto blanco se lea. inset-0 = ocupa todo el marco -->
+						<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+						<!-- Texto superpuesto, anclado abajo con márgenes de 1.5rem a izquierda y derecha, color blanco -->
+						<div class="absolute bottom-6 left-6 right-6 text-white">
+							<!-- Etiqueta naranja pequeña en mayúsculas: "Nuestra asociación" -->
+							<span class="bg-brand-orange text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Gure Elkartea</span>
+							<!-- Subtítulo H3 sobre la foto: "Diversión y buen ambiente garantizados"; mt-2 = margen superior -->
+							<h3 class="text-xl font-bold mt-2">Dibertimendua eta giro ona bermatuta</h3>
+						<!-- Cierra el texto superpuesto -->
+						</div>
+					<!-- Cierra el marco de imagen -->
+					</div>
+				<!-- Cierra la columna derecha -->
+				</div>
+			<!-- Cierra la rejilla -->
+			</div>
+		<!-- Cierra el contenedor centrado -->
+		</div>
+	<!-- Cierra el hero -->
+	</section>
+
+	<!-- Comentario original: sección de servicios -->
+	<!-- ZERBITZUAK SEKZIOA -->
+	<!-- Sección con id="zerbitzuak" (destino del enlace del menú); fondo blanco; relleno vertical py-20 -->
+	<section id="zerbitzuak" class="py-20 bg-white">
+		<!-- Contenedor centrado estándar -->
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<!-- Cabecera de la sección: centrada, ancho máximo 3xl, mb-16 = margen inferior grande, space-y-4 separa hijos -->
+			<div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+				<!-- Sobretítulo pequeño naranja en mayúsculas: "Siempre tenemos algo para ti". Ojo: usa h2 pero con estilo de texto pequeño -->
+				<h2 class="text-xs font-bold uppercase tracking-widest text-brand-orange">Beti daukagu zerbait zuretzat</h2>
+				<!-- Título grande de la sección: "¿Qué ofrecemos en el Gazteleku?" (es un <p> estilizado como título) -->
+				<p class="text-3xl sm:text-4xl font-extrabold text-slate-900">Zer eskaintzen dugu Gaztelekuan?</p>
+				<!-- Descripción en gris -->
+				<p class="text-slate-600">Gure espazioa zure neurrira egokituta dago, deskantsatzeko zein ekintza ezberdinez gozatzeko.</p>
+			<!-- Cierra la cabecera -->
+			</div>
+
+			<!-- Rejilla de tarjetas: md = 2 columnas, lg = 4 columnas, gap-8 = separación. (Nota: "sm:grid-row" no es una clase válida de Tailwind; no hace nada y se podría borrar) -->
+			<div class="grid sm:grid-row md:grid-cols-2 lg:grid-cols-4 gap-8">
+				<!-- Comentario original: servicio 1 -->
+				<!-- Zerbitzua 1 -->
+				<!-- Tarjeta: fondo gris claro, relleno p-8, esquinas redondeadas, borde fino; hover:shadow-xl = sombra grande; hover:-translate-y-1 = sube 4px; "group" marca esta tarjeta como grupo para que los hijos reaccionen a su hover -->
+				<div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:shadow-xl transition-all hover:-translate-y-1 group">
+					<!-- Cuadro del icono 56x56px, fondo azul claro, icono azul, centrado con flex; group-hover:* = cambia a azul sólido con icono blanco cuando se hace hover en la TARJETA -->
+					<div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+						<!-- Icono de mando de videojuegos -->
+						<i data-lucide="gamepad-2" class="w-8 h-8"></i>
+					<!-- Cierra el cuadro del icono -->
+					</div>
+					<!-- Título de la tarjeta: "PS4 / Consolas" -->
+					<h3 class="text-xl font-bold text-slate-900 mb-3">PS4 / Kontsolak</h3>
+					<!-- Descripción: videojuegos para organizar torneos (FIFA, Mario Kart, Rocket League...) -->
+					<p class="text-slate-600 text-sm leading-relaxed">
+						Azken bideo-jokoak lagunekin txapelketak antolatzeko: FIFA, Mario Kart, Rocket League eta gehiago.
+					<!-- Cierra la descripción -->
+					</p>
+				<!-- Cierra la tarjeta 1 -->
+				</div>
+
+				<!-- Comentario original: servicio 2 -->
+				<!-- Zerbitzua 2 -->
+				<!-- Tarjeta 2: misma estructura que la 1 -->
+				<div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:shadow-xl transition-all hover:-translate-y-1 group">
+					<!-- Cuadro del icono, ahora en color esmeralda (verde) -->
+					<div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+						<!-- Icono de dados -->
+						<i data-lucide="dices" class="w-8 h-8"></i>
+					<!-- Cierra el cuadro del icono -->
+					</div>
+					<!-- Título: "Juegos de mesa" -->
+					<h3 class="text-xl font-bold text-slate-900 mb-3">Mahai-jokoak</h3>
+					<!-- Descripción: juegos de estrategia, Catan, Virus, futbolín y ping-pong -->
+					<p class="text-slate-600 text-sm leading-relaxed">
+						Estratégiako jokoak, Catan, Virus, Mahai-futbola eta Ping-pong mahaia prest edozein unetan jokatzeko.
+					<!-- Cierra la descripción -->
+					</p>
+				<!-- Cierra la tarjeta 2 -->
+				</div>
+
+				<!-- Comentario original: servicio 3 -->
+				<!-- Zerbitzua 3 -->
+				<!-- Tarjeta 3: misma estructura -->
+				<div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:shadow-xl transition-all hover:-translate-y-1 group">
+					<!-- Cuadro del icono en color ámbar (amarillo-naranja) -->
+					<div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+						<!-- Icono de paleta de pintor -->
+						<i data-lucide="palette" class="w-8 h-8"></i>
+					<!-- Cierra el cuadro del icono -->
+					</div>
+					<!-- Título: "Salidas y talleres" -->
+					<h3 class="text-xl font-bold text-slate-900 mb-3">Irteerak eta Tailerrak</h3>
+					<!-- Descripción: cocina, manualidades, graffitis y salidas de fin de semana -->
+					<p class="text-slate-600 text-sm leading-relaxed">
+						Sukaldaritza, eskulanak, graffitiak eta asteburuetako irteerak (Karten lasterketak, Abentura parkea...).
+					<!-- Cierra la descripción -->
+					</p>
+				<!-- Cierra la tarjeta 3 -->
+				</div>
+
+				<!-- Comentario original: servicio 4 -->
+				<!-- Zerbitzua 4 -->
+				<!-- Tarjeta 4: misma estructura -->
+				<div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:shadow-xl transition-all hover:-translate-y-1 group">
+					<!-- Cuadro del icono en color púrpura -->
+					<div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+						<!-- Icono de libro abierto -->
+						<i data-lucide="book-open" class="w-8 h-8"></i>
+					<!-- Cierra el cuadro del icono -->
+					</div>
+					<!-- Título: "Sala de estudio" -->
+					<h3 class="text-xl font-bold text-slate-900 mb-3">Ikasketa Gela</h3>
+					<!-- Descripción: lugar tranquilo para deberes, Wi-Fi gratis y ayuda de educadores -->
+					<p class="text-slate-600 text-sm leading-relaxed">
+						Leku lasaia etxeko lanak egiteko, Wi-Fi doakoa eta hezitzaileen laguntza behar duzunerako.
+					<!-- Cierra la descripción -->
+					</p>
+				<!-- Cierra la tarjeta 4 -->
+				</div>
+			<!-- Cierra la rejilla de tarjetas -->
+			</div>
+		<!-- Cierra el contenedor centrado -->
+		</div>
+	<!-- Cierra la sección de servicios -->
+	</section>
+
+
+	<!-- Comentario original: sección de horarios -->
+	<!-- ORDUTEGIA SEKZIOA -->
+	<!-- Sección con id="ordutegia", fondo blanco -->
+	<section id="ordutegia" class="py-20 bg-white">
+		<!-- Contenedor centrado estándar -->
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<!-- Rejilla de 2 columnas en pantallas grandes: horario a la izquierda, aviso a la derecha -->
+			<div class="grid lg:grid-cols-2 gap-12 items-center">
+				<!-- Columna izquierda -->
+				<div>
+					<!-- Sobretítulo naranja: "Estamos abiertos" -->
+					<h2 class="text-xs font-bold uppercase tracking-widest text-brand-orange">Zabalik gaude</h2>
+					<!-- Título: "¿Cuándo puedes venir?"; mb-6 = margen inferior -->
+					<h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2 mb-6">Noiz etor zaitezke?</h3>
+					<!-- Párrafo: las puertas están abiertas toda la semana; pregunta lo que quieras al equipo educador -->
+					<p class="text-slate-600 mb-8">
+						Gaztelekuko ateak zabalik dituzu astean zehar. Datorren hezitzaile taldeari edozein zalantza galdetu diezaiokezu!
+					<!-- Cierra el párrafo -->
+					</p>
+
+					<!-- Comentario original: tabla gráfica de horarios -->
+					<!-- Ordutegi Taula Grafikoa -->
+					<!-- Contenedor de filas de horario con separación vertical de 1rem -->
+					<div class="space-y-4">
+						<!-- Fila 1: flex con extremos opuestos, relleno, fondo gris claro y borde -->
+						<div class="flex justify-between items-center p-4 rounded-2xl bg-slate-50 border border-slate-100">
+							<!-- Días: lunes a jueves -->
+							<span class="font-bold text-slate-700">Astelehena - Osteguna</span>
+							<!-- Píldora con la franja horaria 16:30-20:00 (fondo teal claro) -->
+							<span class="bg-teal-100 text-brand-teal text-sm font-bold px-4 py-1.5 rounded-full">16:30 - 20:00</span>
+						<!-- Cierra la fila 1 -->
+						</div>
+						<!-- Fila 2 (destacada): fondo y borde naranja claro, sombra pequeña -->
+						<div class="flex justify-between items-center p-4 rounded-2xl bg-orange-50 border border-orange-100 shadow-sm">
+							<!-- Días: viernes y sábado -->
+							<span class="font-bold text-slate-900">Ostirala eta Larunbata</span>
+							<!-- Píldora naranja sólida: 16:30-21:00 (cierran más tarde) -->
+							<span class="bg-brand-orange text-white text-sm font-bold px-4 py-1.5 rounded-full">16:30 - 21:00</span>
+						<!-- Cierra la fila 2 -->
+						</div>
+						<!-- Fila 3 -->
+						<div class="flex justify-between items-center p-4 rounded-2xl bg-slate-50 border border-slate-100">
+							<!-- Día: domingo -->
+							<span class="font-bold text-slate-700">Igandea</span>
+							<!-- Franja horaria del domingo -->
+							<span class="bg-teal-100 text-brand-teal text-sm font-bold px-4 py-1.5 rounded-full">16:30 - 20:00</span>
+						<!-- Cierra la fila 3 -->
+						</div>
+						<!-- Fila 4: opacity-60 = aspecto atenuado porque es "cerrado" -->
+						<div class="flex justify-between items-center p-4 rounded-2xl bg-slate-100 opacity-60">
+							<!-- Festivos -->
+							<span class="font-medium text-slate-500">Jai egunak</span>
+							<!-- Texto: "Cerrado / Especiales" -->
+							<span class="text-xs font-bold text-slate-500 uppercase">Itxita / Bereziak</span>
+						<!-- Cierra la fila 4 -->
+						</div>
+					<!-- Cierra el contenedor de filas -->
+					</div>
+				<!-- Cierra la columna izquierda -->
+				</div>
+
+			<!-- Cierra la rejilla -->
+			</div>
+		<!-- Cierra el contenedor centrado -->
+		</div>
+	<!-- Cierra la sección de horarios -->
+	</section>
+
+	<!-- Comentario original (español): pie de página -->
+	<!-- PIE DE PÁGINA / FOOTER -->
+	<!-- <footer> semántico: fondo muy oscuro, texto gris claro; mt-auto lo empuja al fondo gracias al flex-col del body; borde superior -->
+	<footer class="bg-slate-900 text-slate-400 py-12 mt-auto border-t border-slate-800">
+		<!-- Contenedor centrado estándar -->
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<!-- Rejilla: 1 columna en móvil, 4 en md; mb-12 = margen inferior -->
+			<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+				<!-- Comentario original: marca -->
+				<!-- Marka -->
+				<!-- Columna de marca: ocupa 2 de las 4 columnas -->
+				<div class="md:col-span-2 space-y-4">
+					<!-- Fila logo + nombre -->
+					<div class="flex items-center gap-3">
+						<!-- Cuadrito naranja del icono -->
+						<div class="bg-brand-orange p-2 rounded-xl text-white">
+							<!-- Icono de destellos (el mismo del header, más pequeño) -->
+							<i data-lucide="sparkles" class="w-5 h-5"></i>
+						<!-- Cierra el cuadrito -->
+						</div>
+						<!-- Nombre en blanco -->
+						<span class="text-xl font-bold text-white">Gazteleku Gazte Bide</span>
+					<!-- Cierra la fila -->
+					</div>
+					<!-- Descripción: espacio educativo de ocio para jóvenes que promueve euskera y convivencia -->
+					<p class="text-sm max-w-sm text-slate-400">
+						Gazteen aisialdi hezitzailea, euskara eta elkarbizitza sustatzeko gunea. Zatoz eta osatu gure komunitatea!
+					<!-- Cierra la descripción -->
+					</p>
+				<!-- Cierra la columna de marca -->
+				</div>
+
+				<!-- Comentario original: enlaces rápidos -->
+				<!-- Lotura Bizkorrak -->
+				<!-- Columna de navegación -->
+				<div>
+					<!-- Título de la columna (hay una errata: "Navigazioa" debería ser "Nabigazioa") -->
+					<h5 class="text-white font-bold text-sm mb-4">Navigazioa</h5>
+					<!-- Lista no ordenada <ul> de enlaces, con separación vertical -->
+					<ul class="space-y-2 text-sm">
+						<!-- Cada <li> es un elemento de lista; los enlaces pasan a blanco en hover -->
+						<li><a href="#hasiera" class="hover:text-white transition-colors">Hasiera</a></li>
+						<!-- Enlace a servicios -->
+						<li><a href="#zerbitzuak" class="hover:text-white transition-colors">Zerbitzuak</a></li>
+						<!-- Enlace a actividades -->
+						<li><a href="#ekintzak" class="hover:text-white transition-colors">Ekintzak</a></li>
+						<!-- Enlace a horarios -->
+						<li><a href="#ordutegia" class="hover:text-white transition-colors">Ordutegia</a></li>
+					<!-- Cierra la lista -->
+					</ul>
+				<!-- Cierra la columna -->
+				</div>
+
+				<!-- Comentario original: redes sociales -->
+				<!-- Sare Sozialak -->
+				<!-- Columna de redes -->
+				<div>
+					<!-- Título: "Síguenos" -->
+					<h5 class="text-white font-bold text-sm mb-4">Jarrai gaitzazu</h5>
+					<!-- Fila de botones cuadrados de redes -->
+					<div class="flex gap-4">
+						<!-- Botón Instagram: cuadrado 40x40, fondo oscuro, hover naranja. href="#" = enlace vacío (hay que poner la URL real) -->
+						<a href="#" class="w-10 h-10 bg-slate-800 hover:bg-brand-orange text-white rounded-xl flex items-center justify-center transition-colors">
+							<!-- Icono de Instagram -->
+							<i data-lucide="instagram" class="w-5 h-5"></i>
+						<!-- Cierra el botón -->
+						</a>
+						<!-- Botón YouTube, hover teal -->
+						<a href="#" class="w-10 h-10 bg-slate-800 hover:bg-brand-teal text-white rounded-xl flex items-center justify-center transition-colors">
+							<!-- Icono de YouTube -->
+							<i data-lucide="youtube" class="w-5 h-5"></i>
+						<!-- Cierra el botón -->
+						</a>
+						<!-- Botón de mensajería (burbuja), hover cian -->
+						<a href="#" class="w-10 h-10 bg-slate-800 hover:bg-brand-cyan text-white rounded-xl flex items-center justify-center transition-colors">
+							<!-- Icono de burbuja de mensaje -->
+							<i data-lucide="message-circle" class="w-5 h-5"></i>
+						<!-- Cierra el botón -->
+						</a>
+					<!-- Cierra la fila de redes -->
+					</div>
+				<!-- Cierra la columna de redes -->
+				</div>
+			<!-- Cierra la rejilla del footer -->
+			</div>
+
+			<!-- Franja inferior: borde superior, columna en móvil / fila en sm, extremos separados, texto muy pequeño -->
+			<div class="border-t border-slate-800 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs gap-4">
+				<!-- Copyright; &copy; es la entidad HTML del símbolo © -->
+				<p>&copy; 2026 Gazteleku Gazte Bide. Eskubide guztiak erreserbatuta.</p>
+				<!-- Contenedor de enlaces legales -->
+				<div class="flex gap-6">
+					<!-- Política de privacidad; hover:underline = subrayado al pasar el ratón -->
+					<a href="#" class="hover:underline">Pribatutasun Politika</a>
+					<!-- Aviso legal -->
+					<a href="#" class="hover:underline">Lege Oharra</a>
+					<!-- Tercer enlace: el texto "Evidendak / Kokiak" parece una errata o un resto de texto; conviene revisarlo ("Cookieak"?) -->
+					<a href="#" class="hover:underline">Evidendak / Kokiak</a>
+				<!-- Cierra los enlaces legales -->
+				</div>
+			<!-- Cierra la franja inferior -->
+			</div>
+		<!-- Cierra el contenedor centrado -->
+		</div>
+	<!-- Cierra el footer -->
+	</footer>
+
+	<!-- Comentario original: lógica JavaScript -->
+	<!-- JAVASCRIPT LOGIKA -->
+	<!-- Abre el bloque de JavaScript (al final del body para que el HTML ya exista cuando se ejecute) -->
+	<script>
+		// Comentario original: cargar iconos
+		// Ikonoak kargatu
+		// Lucide busca todos los <i data-lucide="..."> y los reemplaza por el SVG del icono correspondiente
+		lucide.createIcons();
+
+		// Comentario original: alternar (toggle) el menú móvil
+		// Mobil Menua Txandakatu (Toggle)
+		// Guarda en una constante el botón hamburguesa, buscándolo por su id
+		const menuBtn = document.getElementById('mobile-menu-btn');
+		// Guarda en una constante el panel del menú móvil
+		const mobileMenu = document.getElementById('mobile-menu');
+
+		// Escucha el evento 'click' del botón; al ocurrir, ejecuta la función flecha (arrow function)
+		menuBtn.addEventListener('click', () => {
+			// classList.toggle: si el panel tiene la clase 'hidden' se la quita (se muestra); si no la tiene, se la pone (se oculta)
+			mobileMenu.classList.toggle('hidden');
+		// Cierra la función y la llamada a addEventListener
+		});
+
+		// Comentario original: al pulsar un enlace del menú móvil, cerrar el menú
+		// Mobil menuko lotura bat sakatzean menua itxi
+		// querySelectorAll devuelve TODOS los <a> dentro de #mobile-menu; forEach recorre cada uno (la variable 'link' es el enlace actual)
+		document.querySelectorAll('#mobile-menu a').forEach(link => {
+			// A cada enlace se le añade un listener de clic
+			link.addEventListener('click', () => {
+				// Al hacer clic, añade la clase 'hidden' = cierra el menú (el enlace ancla ya hace el scroll)
+				mobileMenu.classList.add('hidden');
+			// Cierra el listener del enlace
+			});
+		// Cierra el forEach
+		});
+	<!-- Cierra el bloque de JavaScript -->
+	</script>
+<!-- Cierra el body -->
+</body>
+<!-- Cierra el documento HTML -->
+</html>
