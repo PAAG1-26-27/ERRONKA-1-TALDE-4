@@ -20,7 +20,7 @@ public class Jokoak_MENUA {
         do {
 
             System.out.println("\n|-----JOKUEN MENUA-----|");
-            System.out.println("1.Poxamon");
+            System.out.println("1.Poxamon burrukak");
             System.out.println("2.Zebaki nahasiak");
             System.out.println("3.QUIZ kultura");
             System.out.println("4.Altxorraren bila");
@@ -34,7 +34,7 @@ public class Jokoak_MENUA {
                     break;
 
                 case 1:
-                    Nagusia.jolastu(irakurri);
+                    Poxamon.jolastu(irakurri);
                     break;
 
                 case 2:

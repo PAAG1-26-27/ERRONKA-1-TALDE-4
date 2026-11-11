@@ -1,4 +1,4 @@
-package com.mycompany.poxamon_fv;
+package Jokuen_menua;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
@@ -688,7 +688,7 @@ public class Poxamon
     }
 
     // Partida berriro jokatzeko aukera ematen duen programa nagusia
-    public void Jolastu()
+    public void Jokatu()
     {
         char jarraitu;
 
@@ -705,11 +705,11 @@ public class Poxamon
     }
 
     // Programa nagusia
-    public static void main(String[] args)
+    public static void jolastu(Scanner irakurri)
     {
         try
         {
-            new Poxamon().Jolastu();
+            new Poxamon().Jokatu();
         }
         catch (NoSuchElementException sarreraAmaiera)
         {

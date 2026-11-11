@@ -1,4 +1,4 @@
-package com.mycompany.poxamon_fv;
+package Jokuen_menua;
 import java.util.Scanner;
 /**
  *
