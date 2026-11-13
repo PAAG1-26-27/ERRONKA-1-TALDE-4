@@ -74,6 +74,11 @@ public class Pertsona
         Abizena=a;
     }
     
+    public void setJaiotzeData(LocalDate a)
+    {
+        JaiotzeData = a;
+    }
+    
     public void setJaiotzeData(String sarrera) 
     {     
         LocalDate fecha=null;

@@ -110,25 +110,18 @@ public class Menua
     {
         String erantzuna;
         
-        // Pertsonaren datuak
-        String NAN;
-        String Izena;
-        String Abizena;
-        LocalDate JaiotzeData;
-        
-        //Partaide datuak
-        String Jaiot_herria;
-        Boolean Erroldatua;
-        Boolean Bazkidea;
+        // Objektua hutsik sortu (eraikitzaile lehenetsia)
+        Partaide p = new Partaide();
 
-        // Pertsonaren datuak eskatu
-        NAN = SartuBerba(irakurri, "Sartu zure NAN-a: ");
-        Izena = SartuBerba(irakurri, "Sartu zure Izena: ");
-        Abizena = SartuBerba(irakurri, "Sartu zure Abizena: ");
-        JaiotzeData = SartuData(irakurri, "Sartu Jaiotze data (uuuu/HH/ee) formatuan: ");
+        // Pertsonaren datuak eskatu eta set-ekin gorde
+        p.setNAN(SartuBerba(irakurri, "Sartu zure NAN-a: "));
+        p.setIzena(SartuBerba(irakurri, "Sartu zure Izena: "));
+        p.setAbizena(SartuBerba(irakurri, "Sartu zure Abizena: "));
+        p.setJaiotzeData(SartuData(irakurri, "Sartu Jaiotze data (uuuu/HH/ee) formatuan: "));
         
-        //Partaide datuak eskatu
-        Jaiot_herria = SartuBerba(irakurri, "Sartu zure jaiot-herria: ");
+        // Partaide datuak eskatu eta set-ekin gorde
+        p.setJaiot_herria(SartuBerba(irakurri, "Sartu zure jaiot-herria: "));
+        
         do
         {
             erantzuna = SartuBerba(irakurri,"Erroldatua dago? (bai/ez): ");
@@ -142,7 +135,7 @@ public class Menua
 
         } while (!erantzuna.equals("bai") && !erantzuna.equals("ez"));
         
-        Erroldatua = erantzuna.equals("bai");
+        p.setErroldatua(erantzuna.equals("bai"));
         
         do
         {
@@ -157,12 +150,7 @@ public class Menua
 
         } while (!erantzuna.equals("bai") && !erantzuna.equals("ez"));
         
-        Bazkidea = erantzuna.equals("bai");
-
-        
-        
-        // Partaide objektua sortu
-        Partaide p = new Partaide(NAN, Izena, Abizena, JaiotzeData, Jaiot_herria, Erroldatua, Bazkidea);
+        p.setBazkide(erantzuna.equals("bai"));
 
         // Objektua zerrendan gorde
         partaideak.add(p);
@@ -172,31 +160,20 @@ public class Menua
     
     public void AdministrariaGehitu()
     {
-        //Administrari datuak
-        String Postua;
+        Administratibo a = new Administratibo();
 
-        //Langile datuak
-        String LangileID;
-        int Soldata;
-        
         // Pertsonaren datuak
-        String NAN;
-        String Izena;
-        String Abizena;
-        LocalDate JaiotzeData;
+        a.setNAN(SartuBerba(irakurri, "Sartu zure NAN-a: "));
+        a.setIzena(SartuBerba(irakurri, "Sartu zure Izena: "));
+        a.setAbizena(SartuBerba(irakurri, "Sartu zure Abizena: "));
+        a.setJaiotzeData(SartuData(irakurri, "Sartu Jaiotze data (uuuu/HH/ee) formatuan: "));
 
-        // Pertsonaren datuak eskatu
-        NAN = SartuBerba(irakurri, "Sartu zure NAN-a: ");
-        Izena = SartuBerba(irakurri, "Sartu zure Izena: ");
-        Abizena = SartuBerba(irakurri, "Sartu zure Abizena: ");
-        JaiotzeData = SartuData(irakurri, "Sartu Jaiotze data (uuuu/HH/ee) formatuan: ");
-
-        LangileID = SartuBerba(irakurri, "Sartu Langile kodea: ");
-        Soldata = SartuZenbakia(irakurri, "Sartu soldata: ");
+        // Langile datuak
+        a.setLangileID(SartuBerba(irakurri, "Sartu Langile kodea: "));
+        a.setSoldata(SartuZenbakia(irakurri, "Sartu soldata: "));
         
-        Postua = SartuBerba(irakurri, "Sartu lanpostua: ");
-
-        Administratibo a = new Administratibo(NAN, Izena, Abizena, JaiotzeData, LangileID, Soldata, Postua);
+        // Administratibo datuak
+        a.setPostua(SartuBerba(irakurri, "Sartu lanpostua: "));
 
         administratiboak.add(a);
 
@@ -205,33 +182,20 @@ public class Menua
     
     public void MonitoreaGehitu()
     {
-        //Monitore
-        String TituloID;
-        
-        //Langile datuak
-        String LangileID;
-        int Soldata;
-        
+        Monitorea m = new Monitorea();
+
         // Pertsonaren datuak
-        String NAN;
-        String Izena;
-        String Abizena;
-        LocalDate JaiotzeData;
+        m.setNAN(SartuBerba(irakurri, "Sartu zure NAN-a: "));
+        m.setIzena(SartuBerba(irakurri, "Sartu zure Izena: "));
+        m.setAbizena(SartuBerba(irakurri, "Sartu zure Abizena: "));
+        m.setJaiotzeData(SartuData(irakurri, "Sartu Jaiotze data (uuuu/HH/ee) formatuan: "));
 
-        // Pertsonaren datuak eskatu
-        NAN = SartuBerba(irakurri, "Sartu zure NAN-a: ");
-        Izena = SartuBerba(irakurri, "Sartu zure Izena: ");
-        Abizena = SartuBerba(irakurri, "Sartu zure Abizena: ");
-        JaiotzeData = SartuData(irakurri, "Sartu Jaiotze data (uuuu/HH/ee) formatuan: ");
+        // Langile datuak
+        m.setLangileID(SartuBerba(irakurri, "Sartu Langile kodea: "));
+        m.setSoldata(SartuZenbakia(irakurri, "Sartu soldata: "));
 
-        //Langile datuak eskatu
-        LangileID = SartuBerba(irakurri, "Sartu Langile kodea: ");
-        Soldata = SartuZenbakia(irakurri, "Sartu soldata: ");
-
-        //monitore datuak eskatu
-        TituloID = SartuBerba(irakurri, "Sartu Monitore kodea: ");
-
-        Monitorea m = new Monitorea(NAN, Izena, Abizena, JaiotzeData, LangileID, Soldata, TituloID);
+        // Monitore datuak
+        m.setTituloID(SartuBerba(irakurri, "Sartu Monitore kodea: "));
 
         monitoreak.add(m);
 
@@ -240,20 +204,15 @@ public class Menua
     
     public void EkintzaArruntaGehitu()
     {
-        //Arrunt datuak
-        int Iraupena;
+        Arrunta ea = new Arrunta();
+
+        // Ekintza datuak
+        ea.setID(SartuBerba(irakurri, "Sartu ekintzaren ID-a: "));
+        ea.setIzena(SartuBerba(irakurri, "Sartu ekintzaren izena: "));
+        ea.setHasieraData(SartuData(irakurri, "Sartu ekintzaren hasiera data (uuuu/HH/ee) formatuan: "));
         
-        //Ekintza dtuak
-        String ID;
-        String EIzena;
-        LocalDate HasieraData;
-
-        ID = SartuBerba(irakurri, "Sartu ekintzaren ID-a: ");
-        EIzena = SartuBerba(irakurri, "Sartu ekintzaren izena: ");
-        HasieraData = SartuData(irakurri, "Sartu ekintzaren hasiera data (uuuu/HH/ee) formatuan: ");
-        Iraupena = SartuZenbakia(irakurri, "Sartu ekintzaren iraupena: ");
-
-        Arrunta ea = new Arrunta(ID, EIzena, HasieraData, Iraupena);
+        // Arrunta datuak
+        ea.setIraupena(SartuZenbakia(irakurri, "Sartu ekintzaren iraupena: "));
 
         arruntak.add(ea);
 
@@ -262,22 +221,16 @@ public class Menua
     
     public void PernoktaziozkoEkintzaGehitu()
     {
-        //Arrunt datuak
-        String Lolekua;
-        LocalDate BukaeraData;
+        Pernoktazio pe = new Pernoktazio();
+
+        // Ekintza datuak
+        pe.setID(SartuBerba(irakurri, "Sartu ekintzaren ID-a: "));
+        pe.setIzena(SartuBerba(irakurri, "Sartu ekintzaren izena: "));
+        pe.setHasieraData(SartuData(irakurri, "Sartu ekintzaren hasiera data (uuuu/HH/ee) formatuan: "));
         
-        //Ekintza dtuak
-        String ID;
-        String EIzena;
-        LocalDate HasieraData;
-
-        ID = SartuBerba(irakurri, "Sartu ekintzaren ID-a: ");
-        EIzena = SartuBerba(irakurri, "Sartu ekintzaren izena: ");
-        HasieraData = SartuData(irakurri, "Sartu ekintzaren hasiera data (uuuu/HH/ee) formatuan: ");
-        Lolekua = SartuBerba(irakurri, "Sartu lo lekuaren izena: ");
-        BukaeraData = SartuData(irakurri, "Sartu ekintzaren bukaera data (uuuu/HH/ee) formatuan: ");
-
-        Pernoktazio pe = new Pernoktazio(ID, EIzena, HasieraData, Lolekua, BukaeraData);
+        // Pernoktazio datuak
+        pe.setLolekua(SartuBerba(irakurri, "Sartu lo lekuaren izena: "));
+        pe.setBukaeraData(SartuData(irakurri, "Sartu ekintzaren bukaera data (uuuu/HH/ee) formatuan: "));
 
         pernoktaziozkoak.add(pe);
 
